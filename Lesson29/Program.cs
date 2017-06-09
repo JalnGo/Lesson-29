@@ -10,21 +10,51 @@ namespace OverloadingGenericsLinqAlgorithms
         // int and displays that parameter in the console output.
         // The second overloaded version takes a single parameter of type
         // string and displays that parameter in the console output.
+        
+        
+            public string Name { get; set; }
+            public int Age { get; set; }
 
+            public void Display(string name)
+            {
+                Name = name;
+                Console.WriteLine(name); 
+            }
+
+            public void Display(int age)
+            {
+                Age = age;
+                Console.WriteLine(age);
+            }
+        
     }
 
     class IndexerProperty
     {
         // Implement a read-only indexer property that simply
         // returns the string representation of its int type index value.
-
+        
+        public string this [int index]
+        {
+            get
+            {
+                return index.ToString();
+            }
+        }
     }
 
-    class Generics
+    public class Generics
     {
         // Implement a generic method named GenericSwapMethod that takes
         // two parameters of any type and swaps them in a persistent way.
 
+        public static void GenericSwapMethod<T>(ref T x, ref T y)
+        {
+            T swap;
+            swap = x;
+            x = y;
+            y = swap;
+        }
     }
 
     class Linq
@@ -37,6 +67,12 @@ namespace OverloadingGenericsLinqAlgorithms
             // the results of the that query in the console output from
             // within a foreach loop.
 
+            var list = numbers.Where(m => m % 2 == 0).ToList();
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 
@@ -46,9 +82,13 @@ namespace OverloadingGenericsLinqAlgorithms
         {
             // Google for a description of "Gauss sum of integers"
             // Then implement that algorithm here and return the result.
+            return (limit * (limit + 1)) / 2;
 
         }
-    }
+
+      
+    } 
+    
 
     class Program
     {
@@ -58,10 +98,20 @@ namespace OverloadingGenericsLinqAlgorithms
             // The first call passes in the int value of 42.
             // The second call passes in the string value of "Hello Overloading".
 
+            var overloading = new Overloading();
+            overloading.Display(42);
+            overloading.Display("Hello Overloading");
+
 
             // Access the indexer property on the IndexerProperty class,
             // specifying the index value of 42, and display the result
             // in the console output.
+            {
+                IndexerProperty ip = new IndexerProperty();
+                Console.WriteLine(ip[42]);
+            }
+
+
 
 
             // Declare two int variables named x and y with the initial
@@ -69,6 +119,17 @@ namespace OverloadingGenericsLinqAlgorithms
             // Then call the GenericSwapMethod, passing in the two parameters.
             // After that, display the values on the console output and see
             // that they are swapped.
+            
+                
+                
+                    int x = 3;
+                    int y = 4;
+                    Console.WriteLine($"x: {x}, y: {y}");
+            Generics.GenericSwapMethod<int>(ref x, ref y);
+                    Console.WriteLine($"x: {x}, y: {y}");
+
+
+
 
 
             // Declare an array of int named numbers and initialize
@@ -77,9 +138,21 @@ namespace OverloadingGenericsLinqAlgorithms
             // elements are displayed.
 
 
+            Linq.DisplayEvens(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+
+
+
             // Call the AddIntegersFromOneUpTo method with a parameter set to 100.
             // Then display the result on the console output.
 
+            var z = Gauss.AddIntegersFromOneUpTo(100);
+            Console.WriteLine(z);
+            
+
+            Console.ReadLine();
+
         }
+
+       
     }
 }
