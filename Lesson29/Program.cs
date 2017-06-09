@@ -67,19 +67,28 @@ namespace OverloadingGenericsLinqAlgorithms
             // the results of the that query in the console output from
             // within a foreach loop.
 
-            
+            var list = numbers.Where(m => m % 2 == 0).ToList();
+
+            foreach (var item in list)
+            {
+                Console.WriteLine(item);
+            }
         }
     }
 
-    //class Gauss
-   // {
-      //  static public int AddIntegersFromOneUpTo(int limit)
-       // {
+    class Gauss
+    {
+        static public int AddIntegersFromOneUpTo(int limit)
+        {
             // Google for a description of "Gauss sum of integers"
             // Then implement that algorithm here and return the result.
+            return (limit * (limit + 1)) / 2;
 
-       // }
-   // }
+        }
+
+      
+    } 
+    
 
     class Program
     {
@@ -111,7 +120,7 @@ namespace OverloadingGenericsLinqAlgorithms
             // After that, display the values on the console output and see
             // that they are swapped.
             
-                Console.WriteLine("GenericSwapMethod");
+                
                 
                     int x = 3;
                     int y = 4;
@@ -128,20 +137,17 @@ namespace OverloadingGenericsLinqAlgorithms
             // Then call the DisplayEvens method and see that only even
             // elements are displayed.
 
-            Console.WriteLine("\nEven Numbers:");
-            int[] numbers = new int[1, 2, 3, 4, 5, 6, 7, 8];
-            Random random = new Random();
-            for (int i = 0; i < numbers.Length; i++)
-            {
-                numbers[i] = random.Next(1, 101);
-            }
+
+            Linq.DisplayEvens(new int[] { 1, 2, 3, 4, 5, 6, 7, 8 });
+
 
 
             // Call the AddIntegersFromOneUpTo method with a parameter set to 100.
             // Then display the result on the console output.
 
-
-
+            var z = Gauss.AddIntegersFromOneUpTo(100);
+            Console.WriteLine(z);
+            
 
             Console.ReadLine();
 
